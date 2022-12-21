@@ -117,3 +117,34 @@ This should upload the encoded image to IPFS and give you the hash of the image,
 
 Note that this is just one way to implement a proof-of-concept for a steganographic image on IPFS using AngularJS, and there are many other approaches that you can take depending on your specific needs and requirements.
 
+
+## final thoughts
+
+during the verify some pip env issues happen as following:
+```
+ Using cached https://mirrors.cloud.tencent.com/pypi/packages/f0/63/c863636becd17a8863d2ad71be9a1a39c9f25901e66c2ae1614fbaa83770/encrypt-0.0.1.tar.gz (2.5 kB)
+  Preparing metadata (setup.py) ... done
+ERROR: Cannot install encrypt==0.0.1, encrypt==0.0.10, encrypt==0.0.11, encrypt==0.0.12, encrypt==0.0.2, encrypt==0.0.3, encrypt==0.0.4, encrypt==0.0.5, encrypt==0.0.6, encrypt==0.0.7, encrypt==0.0.8 and encrypt==0.0.9 because these package versions have conflicting dependencies.
+
+The conflict is caused by:
+    encrypt 0.0.12 depends on python>=2.7
+    encrypt 0.0.11 depends on python>=2.7
+    encrypt 0.0.10 depends on python>=2.7
+    encrypt 0.0.9 depends on python>=2.7
+    encrypt 0.0.8 depends on python>=2.7
+    encrypt 0.0.7 depends on python>=2.7
+    encrypt 0.0.6 depends on python>=2.7
+    encrypt 0.0.5 depends on python>=2.7
+    encrypt 0.0.4 depends on python>=2.7
+    encrypt 0.0.3 depends on python>=2.7
+    encrypt 0.0.2 depends on python>=2.7
+    encrypt 0.0.1 depends on python>=2.7
+
+To fix this you could try to:
+1. loosen the range of package versions you've specified
+2. remove package versions to allow pip attempt to solve the dependency conflict
+```
+
+the python env setup must prepared  by human , and eat chatgpt's dog food also is human.  or chatgpt finetune engineer?
+
+
