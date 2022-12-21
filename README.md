@@ -49,3 +49,6 @@ print(result)
 ```
 
 This should give you the hash of the encoded image on IPFS, which you can use to retrieve the image and decode the hidden message or file. Note that this is just one way to implement a proof-of-concept for a steganographic image on IPFS, and there are many other tools and libraries that you can use to achieve the same result.
+
+##TODO
+using fastapi to wrap this PoC as an API for SAAS. 
