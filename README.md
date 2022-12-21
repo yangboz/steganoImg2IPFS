@@ -55,3 +55,65 @@ This should give you the hash of the encoded image on IPFS, which you can use to
 
 ## TODO 
 using fastapi to wrap this PoC as an API for SAAS. 
+
+
+## AngularJS 
+
+also by chatgpt
+
+### Q: proof-of-concept of stegano image to IPFS and app in angularJS
+
+## A:
+
+To create a proof-of-concept for a steganographic image on IPFS using AngularJS, you will need to perform the following steps:
+
+Install the necessary dependencies by running the following command in your terminal:
+Copy code
+npm install ipfs-api --save
+npm install file-saver --save
+npm install @angular/common --save
+In your AngularJS application, import the ipfs-api and file-saver libraries and inject them into your component or service as dependencies:
+Copy code
+import * as ipfsApi from 'ipfs-api';
+import * as fileSaver from 'file-saver';
+
+@Injectable()
+export class MyService {
+  constructor(private ipfs: ipfsApi, private fileSaver: fileSaver) { }
+}
+Connect to the IPFS network using the ipfs-api library:
+Copy code
+const ipfs = ipfsApi('localhost', '5001');
+Use a library or tool that allows you to embed a message or file within an image file, such as the PySteg library that I mentioned in my previous response. You can install PySteg by running pip install pysteg in your terminal.
+Encode the message or file within the image file using PySteg:
+Copy code
+from pysteg.lsb import LSB
+from pysteg.common import *
+
+cover_image = imread("cover_image.png")
+lsb = LSB(cover_image)
+encoded_image = lsb.encode("secret message")
+Save the encoded image to a file using the imsave function from the skimage library:
+Copy code
+from skimage.io import imsave
+imsave("encoded_image.png", encoded_image)
+Upload the encoded image to IPFS using the ipfs-api library:
+Copy code
+const file = new File(["encoded_image.png"], "encoded_image.png", { type: 'image/png' });
+const reader = new FileReader();
+reader.onloadend = () => {
+  const buffer = Buffer.from(reader.result as ArrayBuffer);
+  ipfs.add(buffer)
+    .then((response: any) => {
+      console.log(response);
+    }).catch((err: any) => {
+      console.error(err);
+    });
+};
+reader.readAsArrayBuffer(file);
+
+
+This should upload the encoded image to IPFS and give you the hash of the image, which you can use to retrieve the image and decode the hidden message or file. You can then use this hash to display the image in your AngularJS app or perform other actions as needed.
+
+Note that this is just one way to implement a proof-of-concept for a steganographic image on IPFS using AngularJS, and there are many other approaches that you can take depending on your specific needs and requirements.
+
